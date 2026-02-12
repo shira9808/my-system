@@ -19,7 +19,10 @@
     "accounting",
     "payment-matching"
   ],
-  "author": "Your Name",
+  "author": {
+    "name": "Payment Matcher Team",
+    "email": "support@payment-matcher.local"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.10.0",
