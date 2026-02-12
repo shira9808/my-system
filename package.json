@@ -7,6 +7,11 @@
     "start": "npm run build && electron .",
     "build": "tsc",
     "dist": "npm run build && electron-builder",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:linux": "npm run build && electron-builder --linux",
+    "dist:all": "npm run build && electron-builder -mwl",
+    "pack": "npm run build && electron-builder --dir",
     "dev": "tsc && electron ."
   },
   "keywords": [
@@ -34,7 +39,17 @@
     "files": [
       "dist/**/*",
       "frontend/**/*",
-      "data/**/*"
+      "data/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "data",
+        "to": "data",
+        "filter": [
+          "**/*"
+        ]
+      }
     ],
     "win": {
       "target": [
@@ -43,15 +58,46 @@
           "arch": [
             "x64"
           ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
         }
+      ]
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
       ],
-      "icon": "build/icon.ico"
+      "category": "public.app-category.business"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "category": "Office"
     },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
-      "createStartMenuShortcut": true
+      "createStartMenuShortcut": true,
+      "perMachine": false,
+      "allowElevation": true
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-portable.exe"
     }
   }
 }
