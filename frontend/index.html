@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>入金消込アプリ</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>💰 入金消込アプリ</h1>
+      <p class="subtitle">ローカル完結型の経理向けツール</p>
+    </header>
+
+    <main>
+      <section class="control-panel">
+        <div class="button-group">
+          <button id="btn-import-invoices" class="btn btn-primary">
+            📄 請求書CSV取込
+          </button>
+          <button id="btn-import-payments" class="btn btn-primary">
+            💳 入金CSV取込
+          </button>
+          <button id="btn-execute-matching" class="btn btn-success">
+            🔍 照合実行
+          </button>
+        </div>
+        
+        <div id="status-message" class="status-message"></div>
+        
+        <div class="data-info">
+          <span id="invoice-count" class="info-badge">請求書: 0件</span>
+          <span id="payment-count" class="info-badge">入金: 0件</span>
+        </div>
+      </section>
+
+      <section class="results-section">
+        <h2>照合結果</h2>
+        <div class="table-container">
+          <table id="results-table">
+            <thead>
+              <tr>
+                <th>法人名</th>
+                <th>施設名</th>
+                <th class="text-right">請求額</th>
+                <th class="text-right">入金額</th>
+                <th class="text-right">差額</th>
+                <th class="text-center">判定</th>
+                <th>入金日</th>
+                <th>入金元口座名義</th>
+              </tr>
+            </thead>
+            <tbody id="results-body">
+              <tr>
+                <td colspan="8" class="text-center empty-message">
+                  照合結果がありません。<br>
+                  CSV を取り込んで照合を実行してください。
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="summary-section" id="summary-section" style="display: none;">
+          <div class="summary-item">
+            <span class="summary-label">完全一致 (〇):</span>
+            <span id="count-exact" class="summary-value">0件</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">ほぼ一致 (△):</span>
+            <span id="count-partial" class="summary-value">0件</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">未一致:</span>
+            <span id="count-unmatched" class="summary-value">0件</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Payment Matcher v1.0.0 - ローカル完結型アプリ</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
